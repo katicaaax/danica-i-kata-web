@@ -1,0 +1,458 @@
+/*
+    Simple Scroll Gallery (SSG)
+    Copyright (C) 2018 Roman Flössler - flor@flor.cz
+
+    licensed under Mozilla Public License 2.0 with one exception: it is not granted to develop a Wordpress plugin based on SSG.
+    Here you can see how gallery works - http://ssg.flor.cz/
+    SSG on Github: https://github.com/Roman-Flossler/Simple-Scroll-Gallery.git
+*/
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff) format('woff');
+}
+
+#SSG_gallery, #SSG_gallery *, #SSG_exit, #SSG_exit *, #SSG_tip, #SSG_tip * {
+    font-size: 100%;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: none;
+    width: auto;
+    height: auto;
+    border: none;
+}
+
+#SSG_gallery, #SSG_tip {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+#SSG_galBg {
+    background: #0e0e0e;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    z-index: 99990;
+    top: 0;
+    left: 0px;
+}
+
+#SSG_gallery {
+    background: #0e0e0e;
+    position: absolute;
+    top: 0px;
+    z-index: 99991;
+    width: 100%;
+    text-align: center;
+    left: 0px;
+    padding-top: 13em;
+}
+
+#SSG_gallery img {
+    max-width: 96%;
+    max-height: 90vh;
+    display: inline;
+    margin: 0.1em 0 0.5em 0;
+    border: 1px solid black;
+}
+
+#SSG_gallery span.SSG_forlogo {
+    position: relative;
+}
+
+#SSG_gallery div.SSG_imgWrap {
+    position: relative;
+}
+
+#SSG_gallery div.SSG_imgWrap::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+}
+
+#SSG_gallery span.SSG_logo {
+    /* background: url(https://www.flor.cz/img/florcz.png); add your own logo over images */
+    display: inline-block;
+    width: 16vw;
+    max-width: 147px;
+    min-width: 100px;
+    height: 47px;
+    position: absolute;
+    bottom: 0.5em;
+    left: 0px;
+    opacity: 0.6;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+#SSG_gallery p, #SSG_lastone p {
+    display: block;
+    margin: auto;
+    line-height: 1.3em;
+    color: #ababab;
+    text-align: center;
+    background: #222222;
+    padding: 0.4em;
+    padding-bottom: 0.3em;
+    margin-bottom: 13em;
+    font-size: 108%;
+    text-shadow: rgb(0, 0, 0) 0px 0px 16px;
+    letter-spacing: 0.001em;
+}
+
+#SSG_gallery::before, #SSG_tip span, #SSG_gallery .SSG_text {
+    font-size: 108%;
+}
+
+#SSG_lastone p {
+    margin-bottom: 1em !important;
+}
+
+#SSG_lastone {
+    width: 100%;
+    margin-top: 24vw;
+    padding-bottom: 6vw;
+}
+
+#SSG_lastone #SSG_menu a:hover {
+    text-decoration: underline;
+}
+
+#SSG_lastone #SSG_menu {
+    overflow: auto;
+    text-align: right;
+}
+
+#SSG_menu a.SSG_link {
+    display: inline-block;
+    width: 33%;
+    cursor: pointer;
+    color: #FF706C;
+    padding-top: 0.2em;
+    line-height: 1.4;
+    text-align: center;
+}
+
+#SSG_menu #SSGL {
+    color: #989898;
+    text-decoration: none;
+}
+
+#SSG_first span {
+    display: inline-block;
+    transform: rotate(180deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13px' height='18px' %3E%3Cg fill='none' stroke='%23FF706C' stroke-width='1.5' %3E%3Cpolyline points='1,11 6,16 11,11 '/%3E%3Cline x1='6' y1='4' x2='6' y2='13'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 11px;
+    width: 0.9em;
+    height: 1.5em;
+}
+
+#SSG_gallery #SSG_tipCall {
+    /* >>>>>>>>>>>>>>>>>>>>>  SSG tip */
+    color: #969696;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 2em 26px 10px 3em;
+    letter-spacing: 0.01em;
+    top: -1px;
+    position: relative;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13px' height='18px' %3E%3Cg fill='none' stroke='%239a9a9a' stroke-width='1.4' %3E%3Cpolyline points='1,11 6,16 11,11 '/%3E%3Cline x1='6' y1='2' x2='6' y2='13'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px bottom 9px;
+    background-size: 15px;
+    text-shadow: rgb(0, 0, 0) 0px 0px 6px;
+    font-weight: normal;
+}
+
+#SSG_gallery #SSG_tipCall:after {
+    content: '';
+    width: 6em;
+    position: absolute;
+    left: 3em;
+    bottom: 12px;
+    border-width: 0 0 1.3px;
+    border-style: solid;
+    border-color: #6f6f6f;
+}
+
+#SSG_gallery #p0 {
+    padding-bottom: 0.5em;
+}
+
+#SSG_tip {
+    left: 0vw;
+    top: 50vh;
+    width: 96vw;
+    padding: 0.33em 1em;
+    position: fixed;
+    z-index: 99992;
+    text-align: center;
+}
+
+#SSG_tip a {
+    text-decoration: underline;
+    color: #FFEB3B;
+    background: none;
+    text-underline-position: under;
+}
+
+#SSG_tip hr {
+    opacity: 0.5;
+    margin: 0.5em 0;
+    border-bottom: 1px solid white;
+}
+
+#SSG_tip strong {
+    color: #6bddff;
+    background: none;
+    font-family: Consolas, Menlo, "Lucida Console", monospace;
+    font-size: 141%;
+    font-weight: normal;
+}
+
+#SSG_tip #SSG_tipClose {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: 'Times New Roman', monospace;
+    font-size: 181%;
+    color: #bbbbbb;
+    background: #000000;
+    padding: 0 6px;
+    border-radius: 0px 4px 0 11px;
+    height: 26px;
+    width: 28px;
+    line-height: 27px;
+}
+
+#SSG_tip span {
+    padding: 1em 2em;
+    background: #2f2f2f;
+    color: #ffffff;
+    border: 1px solid black;
+    border-radius: 5px;
+    line-height: 2em;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    margin-top: -8em;
+    box-shadow: 0px 5px 19px 1px rgba(0, 0, 0, 0.9);
+}
+
+#SSG_exit {
+    top: -9px;
+    left: -9px;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+    background-color: rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    z-index: 99993;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13px' height='13px'%3E%3Cg fill='none' stroke='%23bbbbbb' stroke-width='1' %3E%3Cline x1='0' y1='0' x2='13' y2='13'/%3E%3Cline x1='0' y1='13' x2='13' y2='0'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 25px 25px;
+    background-size: 14px;
+    opacity: 0.55;
+}
+
+#SSG_exit:hover {
+    opacity: 1;
+    background-color: black;
+}
+
+@media (min-width: 900px) {
+    #SSG_gallery span.SSG_logo {
+        width: 11vw;
+        min-width: 130px;
+    }
+}
+
+@media (max-width: 900px) and (orientation: landscape), (max-width: 550px) and (orientation: portrait) {
+    /* >>>>>>>>>>>>>>>>>>>>>  Styles for smartphones */
+    #SSG_gallery img {
+        max-width: 99%;
+        max-height: 89vh;
+        margin: 0.1em 0 0.1em 0;
+    }
+    #SSG_gallery {
+        padding-top: 5em;
+    }
+    #SSG_gallery span.SSG_logo {
+        background-size: 100%;
+        width: 16vw;
+        max-width: 133px;
+        height: 44px;
+        bottom: 2px;
+        left: -3px;
+    }
+    #SSG_gallery p {
+        margin-bottom: 6em;
+        line-height: 1.1em;
+        margin-top: -0.2em;
+        /* kdyztak zmensit na -0.1em, a bude vetsi mezera mezi popiskem a fotkou */
+        padding-top: 0.3em;
+        padding-bottom: 0.4em;
+    }
+    #SSG_exit {
+        top: -12px;
+        left: -12px;
+        opacity: 0.49;
+        background-position: 26px 26px;
+    }
+}
+
+@media (max-width: 660px) and (orientation: landscape), (max-width: 366px) and (orientation: portrait) {
+    /* >>>>>>>>>>>>>>>>>>>>>  exit icon for smaller smartphones */
+    #SSG_exit {
+        border-radius: 11px;
+        top: -18px;
+        left: -19px;
+        background-position: 30px 30px;
+        background-size: 12px;
+    }
+    #SSG_gallery::before, #SSG_tip span, #SSG_gallery .SSG_text {
+        font-size: 90%;
+    }
+    #SSG_gallery p, #SSG_lastone p {
+        font-size: 90%;
+        margin-top: -0.2em;
+        padding-top: 0.2em;
+    }
+    #SSG_gallery #SSG_tipCall {
+        background-size: 12px;
+        background-position: right 6px bottom 10px;
+    }
+    #SSG_first span {
+        background-size: 9px;
+    }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>  for Iphone X - bottom safe area  */
+
+@supports (-webkit-overflow-scrolling: touch) {
+    @media only screen and (min-width: 700px) and (max-width: 900px) and (orientation: landscape) {
+        #SSG_gallery p {
+            padding-bottom: 1em;
+        }
+        #SSG_gallery #p0 {
+            padding-bottom: 1.3em;
+        }
+        #SSG_gallery, #SSG_tip {
+            font-size: 17px;
+        }
+    }
+}
+
+html.ssg ::-webkit-scrollbar {
+    /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  scrollbar and cursor styles */
+    background: #191919;
+    width: 9px;
+}
+
+html.ssg ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.75);
+    background: #505050;
+    background-size: 100%;
+    margin-top: 6px;
+    min-height: 81px;
+}
+
+html.ssg ::-webkit-scrollbar-button {
+    height: 20px;
+    background: black;
+    height: 2px;
+}
+
+html.ssg body {
+    cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAMAAABFjsb+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFAAAAhYWFAAAAbp8VQAAAAAN0Uk5T//8A18oNQQAAAB5JREFUeNpiYIIBBiwsRryyA6aOgREDMgxBfwAEGADvGQKaYOgjsQAAAABJRU5ErkJggg=='), url(https://www.flor.cz/js/SSG/cross-ssg.cur), text;
+    overflow-x: hidden;
+    background-color: #0e0e0e;
+}
+
+html.ssg .wait {
+    cursor: wait !important;
+}
+
+html.ssg {
+    scrollbar-base-color: #505050;
+    scrollbar-3dlight-color: #505050;
+    scrollbar-highlight-color: #505050;
+    scrollbar-track-color: #191919;
+    scrollbar-arrow-color: #191919;
+    scrollbar-shadow-color: black;
+}
+
+@supports (-ms-ime-align:auto) {
+    /* >>>>>>>>>>>>>>>>>>>>>  no scrollbars for Edge and Firefox, 'cause they can't paint it black */
+    html.ssg body {
+        overflow: hidden;
+    }
+}
+
+@supports (-moz-appearance:none) {
+    html.ssg body {
+        overflow: hidden;
+    }
+}
+
+@media (orientation: portrait) {
+    /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> styles for portrait mode */
+    #SSG_gallery img {
+        max-width: 99%;
+    }
+    #SSG_gallery::before {
+        content: 'photos look better in landscape mode ;-)';
+        color: #bbbbbb;
+        padding-bottom: 3em;
+        display: block;
+        margin-top: 2em;
+        font-style: italic;
+    }
+    #SSG_tipCall, #SSG_arrowdown {
+        display: none !important;
+    }
+    html.ssg body {
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 550px) and (orientation: portrait) {
+    #SSG_gallery p, #SSG_lastone p {
+        line-height: 1.3em;
+        padding: 0.2em;
+    }
+    #SSG_gallery img {
+        margin: 0.1em 0 0.5em 0;
+    }
+    #SSG_gallery span.SSG_logo {
+        bottom: 0.5em;
+    }
+}
+
+@media (any-pointer: coarse) {
+    /* >>>>>>>>>>>>>>>>>>>>>  when device has some touch control -> allow standard scrolling */
+    html.ssg body {
+        overflow-y: auto;
+    }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* >>>>>>>>>>>>>>>>>>>>>  IE10 & IE11 bug solution. IE doesn't change bg color back from black */
+    html.ssg body {
+        background-color: white;
+    }
+}

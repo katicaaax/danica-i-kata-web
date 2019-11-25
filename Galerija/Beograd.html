@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <title>Ponuda | Home Seeker</title>
+</head>
+
+<body onload='SSG.run({noExit:true,fs:true})' style='background:#0e0e0e;'>
+    <a href='Slike/bg1.jpg'></a>
+    <a href='Slike/1.jpg'>Voždovac</a>
+    <a href='Slike/5.jpg'>Karaburma</a>
+    <a href='Slike/apartment.jpg'>Novi Beograd</a>
+
+    <link rel='stylesheet' href='Styles/ssg.css' type='text/css' media='all'>
+    <script type='text/javascript' src='Script/ssg.js'></script>
+
+    <style type='text/css' media='all'>
+        #SSG_gallery span.SSG_logo {
+            background-image: url(florcz.png);
+        }
+
+        #SSG_gallery p {
+            color: #cccccc;
+        }
+
+        @media (min-resolution: 120dpi),
+        (-webkit-min-device-pixel-ratio: 1.25) {
+            #SSG_gallery img {
+                image-rendering: pixelated;
+            }
+        }
+
+        /* only for text-image, don't use pixelated on photos */
+    </style>
+</body>
+
+</html>
