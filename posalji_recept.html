@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+	<script src="jquery-2.1.4.min"></script>
+    <meta http-equiv="Content-Language" content="sr" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="stil.css" />	
+	<title>Slatka tajna</title>
+	
+	
+  </head>
+  
+  <body>
+  
+     <div class="pozadina" style="position:fixed; top:0px; left:0px; z-index:-999; width:100%; 
+        overflow-y:hidden; overflow-x:hidden; margin:auto;">
+     </div>
+	 
+	 <div class="naslov">SLATKA TAJNA</div>
+	
+	 <div class="wrapper">
+	 
+		<div class="header">
+			<nav class="menu">
+                <ul class="clearfix">
+                    <li><a href="naslovna.html">Naslovna</a></li>
+                    <li><a href="torte.html">Recepti<span class="arrow">&#9660;</span></a>
+						<ul class="sub-menu">
+							<li><a href="torte.html">Torte</a></li>
+							<li><a href="kolaci.html">Kolači</a></li>
+							<li><a href="sladoledi.html">Sladoledi</a></li>
+						</ul>
+					</li>
+                    <li><a href="dekoracija.html">Dekoracija</a></li>
+                    <li><a href="posalji_recept.html">Pošalji recept</a></li>
+                </ul>
+			</nav>
+        </div>
+		
+		
+		<img src="slike/cupcake2.png" alt="Kolac" style="float:right;width:100px;height:100px;">
+		
+		<div id="recept">
+		<form action="demo_form.asp" method="post"><br>
+		
+		Ime: <br> <input type="text" name="ime" maxlength="12" required><br>
+		Prezime: <br> <input type="text" name="prezime"><br>
+		E-mail: <br> <input type="email" name="email" autocomplete="off" required><br>
+        Pol: <br>
+		<input type="radio" name="pol" value="Muškarac">Muškarac<br>
+         <input type="radio" name="pol" value="Žena">Žena<br>
+          <p>Ostavljam recept za:</p>
+          <input type="checkbox" name="Vrsta" value="Torte">Torte<br>
+          <input type="checkbox" name="Vrsta" value="Kolači">Kolači<br> 
+          <input type="checkbox" name="Vrsta" value="Sladoledi">Sladoledi<br> 
+		  <br> 
+		  <br> 
+		  Naziv torte/kolača/sladoleda: <input type="text" name="naziv" required><br><br>
+          <textarea rows="7" cols="80" placeholder="Napišite Vaš recept."></textarea>
+          <br />
+          <input type="submit" value="Pošalji">
+          <input type="reset" value="Obriši">
+        </form>
+		</div>
+		
+
+		
+		
+			<div class="footer">
+			<div class="kontakt">
+			<p>Kontaktirajte nas na: <a href="mailto:slatkatajna@gmail.com">
+			slatkatajna@gmail.com</a>.</p>
+			</div>
+				<img src="slike/logo.jpg"><p>
+				Beograd 2019. | EPOS
+			</div>
+	  </div>
+		
+  </body>
+</html>
